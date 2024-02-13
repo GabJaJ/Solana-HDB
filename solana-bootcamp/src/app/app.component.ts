@@ -18,7 +18,7 @@ import { computedAsync } from 'ngxtension/computed-async';
   ],
   selector: 'solana-bootcamp-root',
   template: `
-    <header class="px-16 pt-24 py-8">
+    <header class="py-8">
       <h1 class="text-center text-5xl mb-4">My Bank</h1>
 
       
@@ -30,10 +30,8 @@ import { computedAsync } from 'ngxtension/computed-async';
       @if (account()) {
         <div class= "absolute top-4 left-4 flex justify-center items-center gap2">
           <img [src]="account()?.info?.image" class="w-8 h-8" />
-          <p class="text-xl>{{ account()?.balance }}</p>
+          <p class="text-xl">{{ account()?.balance }}</p>
         </div>
-
-
       }
     </header>
 
