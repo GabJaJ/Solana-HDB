@@ -16,7 +16,7 @@ import { HdWalletMultiButtonComponent} from '@heavy-duty/wallet-adapter-material
   ],
   selector: 'solana-bootcamp-root',
   template: `
-    <header class="px-16 pt-24 pb-8">
+    <header class="px-16 pt-24 py-8">
       <h1 class="text-center text-5xl mb-4">My Bank</h1>
 
       @if (account()) {
