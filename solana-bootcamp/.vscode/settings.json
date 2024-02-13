@@ -1,0 +1,13 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "editor.tabSize": 2,
+    "typescript.inlayHints.enumMemberValues.enabled": true,
+    "typescript.inlayHints.parameterTypes.enabled": true,
+    "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+    "typescript.inlayHints.pvariableTypes.enabled": true,
+    "typescript.inlayHints.functionLikeTypes.enabled": true
+}
