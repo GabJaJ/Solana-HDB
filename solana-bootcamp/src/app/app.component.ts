@@ -5,6 +5,7 @@ import { ShyftApiService } from './shyft-api.service';
 import { WalletStore } from '@heavy-duty/wallet-adapter';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { computedAsync } from 'ngxtension/computed-async';
+import { MatAnchor } from '@angular/material/button'
 
 @Component({
   standalone: true,
@@ -12,7 +13,7 @@ import { computedAsync } from 'ngxtension/computed-async';
     //RouterOutlet, 
     //RouterLink,
     //DecimalPipe,
-    //MatAnchor,
+    MatAnchor,
     RouterModule, 
     HdWalletMultiButtonComponent,
   ],
@@ -23,7 +24,7 @@ import { computedAsync } from 'ngxtension/computed-async';
 
       
 
-      <div class="flex justify-center">
+      <div class="flex justify-center mb-4">
         <hd-wallet-multi-button></hd-wallet-multi-button>
       </div>
 
@@ -33,9 +34,22 @@ import { computedAsync } from 'ngxtension/computed-async';
           <p class="text-xl">{{ account()?.balance }}</p>
         </div>
       }
+
+      <nav>
+        <ul class="flex justify-center items-center gap-4">
+          <li>
+            <a [routerLink]="['']" mat-raised-button>Home</a>
+          </li>
+          <li>
+            <a [routerLink]="['settings']" mat-raised-button>Settings</a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
-    <main></main>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
   `,
 })
 export class AppComponent {
