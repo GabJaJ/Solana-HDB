@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'solana-features-section',
+    selector: 'solana-bootcamp-features-section',
     template: `
         <section class="p-16">
             <ul class="flex justify-center items-center gap-4 ">
