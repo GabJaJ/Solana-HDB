@@ -19,7 +19,7 @@ import { MatAnchor } from '@angular/material/button'
   ],
   selector: 'solana-bootcamp-root',
   template: `
-    <header class="py-8">
+    <header class="py-8 relative">
       <h1 class="text-center text-5xl mb-4">My Bank</h1>
 
       
@@ -42,6 +42,9 @@ import { MatAnchor } from '@angular/material/button'
           </li>
           <li>
             <a [routerLink]="['settings']" mat-raised-button>Settings</a>
+          </li>
+          <li>
+            <a [routerLink]="['balance']" mat-raised-button>Balance</a>
           </li>
         </ul>
       </nav>
