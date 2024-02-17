@@ -14,7 +14,7 @@ export const appRoutes: Route[] = [
     {
         path: 'balance',
         loadComponent: () =>
-            import('./balance-section.components').then((m) => m.BalanceSectionComponent),
+            import('./balance-page.components').then((m) => m.BalancePageComponent),
     },
     {
         path: '**',
