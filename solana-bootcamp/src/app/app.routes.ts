@@ -12,6 +12,11 @@ export const appRoutes: Route[] = [
             import('./settings-page.components').then((m) => m.SettingsPageComponent),
     },
     {
+        path: 'balance',
+        loadComponent: () =>
+            import('./balance-section.components').then((m) => m.BalanceSectionComponent),
+    },
+    {
         path: '**',
         redirectTo: '',
     },
