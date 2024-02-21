@@ -71,7 +71,6 @@ export class AppComponent {
   );
 
   onTransfer() {
-    console.log('Hola Mundo!');
 
     this._matDialog.open(TransferModalComponent)
   }

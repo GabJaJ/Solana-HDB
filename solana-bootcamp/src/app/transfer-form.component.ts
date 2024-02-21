@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput} from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
@@ -20,7 +20,7 @@ export interface TransferFormPayload {
 @Component({
     selector: 'solana-bootcamp-transfer-form',
     template: ` 
-        <form #form="ngForm" class="w-[400px]">
+        <form #form="ngForm" class="w-[400px]" (ngSubmit)="onSubmitForm(form)">
             <mat-form-field appearance="fill" class="w-full mb-4">
                 <mat-label>Concepto</mat-label>
                 <input 
@@ -102,6 +102,10 @@ export interface TransferFormPayload {
                 
             </mat-form-field>
 
+            <footer class="flex justify-center">
+                <button type="submit" mat-raised-button color="primary">Enviar</button>
+            </footer>
+
         </form> 
     `,
     standalone: true,
@@ -113,6 +117,24 @@ export class TransferFormComponent  {
         amount: null,
         memo: null,
         receiverAddress: null,
+
+    };
+
+    @Output() readonly submitForm = new EventEmitter<TransferFormPayload>()
+
+    onSubmitForm(form: NgForm) {
+        if (form.invalid 
+            || this.model.amount === null 
+            || this.model.memo === null 
+            || this.model.receiverAddress === null) {
+            console.error('El formulario es inválido.')
+        } else {
+            this.submitForm.emit({
+                amount: this.model.amount,
+                memo: this.model.memo,
+                receiverAddress: this.model.receiverAddress,
+            });
+        }
 
     }
     
