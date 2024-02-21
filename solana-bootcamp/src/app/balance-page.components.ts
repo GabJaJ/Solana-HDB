@@ -8,9 +8,7 @@ import { TransactionsSectionComponent } from './transaction-section.component';
         <section class="px-24 py-32 bg-black bg-opacity-5 flex justify-center">
             <solana-bootcamp-balance-section></solana-bootcamp-balance-section>
         </section>
-        <div class="flex justify-center gap-4">
-            
-
+        <div class="px-24 py-32 bg-opacity-5 flex justify-center gap-4">
             <solana-bootcamp-transactions-section></solana-bootcamp-transactions-section>
         </div>
     `,

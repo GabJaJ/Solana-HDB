@@ -6,6 +6,8 @@ import { WalletStore } from '@heavy-duty/wallet-adapter';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { computedAsync } from 'ngxtension/computed-async';
 import { MatAnchor } from '@angular/material/button'
+import { TransferModalComponent } from './transfer-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   standalone: true,
@@ -50,6 +52,8 @@ import { MatAnchor } from '@angular/material/button'
       </nav>
     </header>
 
+    <button (click)="onTransfer()">Transfer</button>
+
     <main>
       <router-outlet></router-outlet>
     </main>
@@ -59,11 +63,18 @@ export class AppComponent {
   private readonly _shyftApiService = inject(ShyftApiService);
   private readonly _walletStore = inject(WalletStore);
   private readonly _publicKey = toSignal(this._walletStore.publicKey$);
+  private readonly _matDialog = inject(MatDialog);
 
   readonly account = computedAsync(
     () => this._shyftApiService.getAccount(this._publicKey()?.toBase58()),
     { requireSync: true },
   );
+
+  onTransfer() {
+    console.log('Hola Mundo!');
+
+    this._matDialog.open(TransferModalComponent)
+  }
 
 }
 
