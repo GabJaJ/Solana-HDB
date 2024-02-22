@@ -6,8 +6,8 @@ import { map, of } from 'rxjs';
 export class ShyftApiService {
     private readonly _httpClient : HttpClient = inject(HttpClient);
     private readonly _header = { 'x-api-key': 'QobHfFkMqo307X2S'};
-    private readonly _mint = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
-
+    private readonly _mint = '7EYnhQoR9YM3N7UoaKRoA44Uy8JeaZV3qyouov87awMs';
+    
     getAccount(publicKey: string | undefined | null) {
         if (!publicKey) {
             return of(null);
@@ -54,7 +54,7 @@ export class ShyftApiService {
 export class tokenusdc {
     private readonly _httpClient = inject(HttpClient);
     private readonly _header = { 'x-api-key': 'QobHfFkMqo307X2S' };
-    private readonly _mint = '7EYnhQoR9YM3N7UoaKRoA44Uy8JeaZV3qyouov87awMs';
+    private readonly _mint = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
     getAccount1(publicKey1: string | undefined | null) {
 
         if (!publicKey1) {

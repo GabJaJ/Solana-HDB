@@ -6,7 +6,6 @@ import { WalletStore } from '@heavy-duty/wallet-adapter';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { computedAsync } from 'ngxtension/computed-async';
 import { MatAnchor } from '@angular/material/button'
-import { TransferModalComponent } from './transfer-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -52,7 +51,7 @@ import { MatDialog } from '@angular/material/dialog';
       </nav>
     </header>
 
-    <button (click)="onTransfer()">Transfer</button>
+    
 
     <main>
       <router-outlet></router-outlet>
@@ -70,10 +69,7 @@ export class AppComponent {
     { requireSync: true },
   );
 
-  onTransfer() {
-
-    this._matDialog.open(TransferModalComponent)
-  }
+ 
 
 }
 
