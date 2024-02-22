@@ -23,7 +23,10 @@
     "@heavy-duty/wallet-adapter-cdk": "^0.8.3",
     "@heavy-duty/wallet-adapter-material": "^0.8.3",
     "@nx/angular": "18.0.2",
+    "@solana/spl-token": "^0.4.0",
+    "buffer": "^6.0.3",
     "ngxtension": "^2.0.0",
+    "node-polyfill-webpack-plugin": "^3.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

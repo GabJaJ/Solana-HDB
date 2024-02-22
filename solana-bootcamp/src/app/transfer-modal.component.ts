@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { TransferFormComponent, TransferFormPayload } from './transfer-form.component';
+import { injectTransactionSender } from '@heavy-duty/wallet-adapter';
+import { createTransferInstructions } from '@heavy-duty/spl-utils';
 
 @Component({
     selector: 'solana-bootcamp-transfer-modal',
@@ -17,7 +19,25 @@ import { TransferFormComponent, TransferFormPayload } from './transfer-form.comp
 })
 
 export class TransferModalComponent {
+    private readonly _transactionSender = injectTransactionSender();
+
     onTransfer(payload: TransferFormPayload) {
-        console.log('Hola Mundo!', payload);
+        this._transactionSender
+            .send(({ publicKey }) => 
+                createTransferInstructions({
+                    amount: payload.amount,
+                    mintAddress: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+                    receiverAddress: payload.receiverAddress,
+                    senderAddress: publicKey.toBase58(),
+                    fundReceiver: true,
+                    memo:payload.memo,
+                }),
+            )
+            .subscribe({
+                next: (signature) => console.log(`Firma: ${signature}`),
+                error: error => console.error(error),
+                complete: () => console.log('Transaccion lista.'),
+            });
+
     }
 }
