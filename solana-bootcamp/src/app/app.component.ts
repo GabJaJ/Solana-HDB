@@ -68,9 +68,9 @@ export class AppComponent implements OnInit {
     () => this._shyftApiService.getAccount(this._publicKey()?.toBase58()),
   );
 
-    ngOnInit() {
-      this._connectionStore.setEndpoint(this._shyftApiService.getEndpoint());
-    }
+  ngOnInit() {
+    this._connectionStore.setEndpoint(this._shyftApiService.getEndpoint());
+  }
 
 }
 

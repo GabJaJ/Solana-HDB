@@ -26,7 +26,7 @@ import { MatButton } from '@angular/material/button';
 
             <footer class="flex justify-center items-center gap-2">
                 <button mat-raised-button color="primary" (click)="onTransfer()">
-                Transferir fondos.
+                Transferir fondos
                 </button>
             </footer>
         }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { map, of } from 'rxjs';
+import { map, tap,  of } from 'rxjs';
 
 @Injectable({ providedIn: 'root'})
 export class ShyftApiService {
@@ -47,13 +47,32 @@ export class ShyftApiService {
         url.searchParams.set('tx_num', '5');
     
         return this._httpClient
-            .get<{ result: { status: string; type: string; timestamp: string }[] }>(
+            .get<{ result: { status: string; type: string; timestamp: string; actions: any[] }[] }>(
             url.toString(),
             {
                 headers: this._header,
             },
             )
-            .pipe(map((response) => response.result));
+            .pipe(
+                tap((response) => {
+                    response.result.map((transaction) => {
+                        if (transaction.type === 'TOKEN_TRANSFER') {
+                            
+                            return {
+                                amount: transaction.actions[0].info.amount,
+                                status: transaction.status,
+                                timestamp: transaction.timestamp,
+                                type: transaction.type,
+
+                                // ...
+                            }
+                        } else {
+                            return transaction;
+                        }
+                    });
+                }),
+                map((response) => response.result),
+            );
         }
 
     
@@ -77,7 +96,7 @@ export class tokenusdc {
         url.searchParams.set('token', this._mint)
 
         return this._httpClient.get<{
-            result: { balance: number; info: { image: string, name: string } };
+            result: { balance: number; info: { image: string; name: string; timestamp: string } };
         }>(url.toString(), { headers: this._header })
             .pipe(map((response) => response.result));
     }
@@ -123,9 +142,13 @@ export class ActivityWallet {
 
 
         return this._httpClient.get<{
-            result: { blocktime: string };
-        }>(url.toString(), { headers: this._header })
-            .pipe(map((response) => response.result));
+            result: { blocktime: string };}>
+            (url.toString(), 
+            { 
+                headers: this._header 
+            },
+        )
+        .pipe(map((response) => response.result));
     }
 }
 
