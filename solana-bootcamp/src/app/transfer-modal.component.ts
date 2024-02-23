@@ -26,7 +26,7 @@ export class TransferModalComponent {
             .send(({ publicKey }) => 
                 createTransferInstructions({
                     amount: payload.amount,
-                    mintAddress: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+                    mintAddress: '7EYnhQoR9YM3N7UoaKRoA44Uy8JeaZV3qyouov87awMs',
                     receiverAddress: payload.receiverAddress,
                     senderAddress: publicKey.toBase58(),
                     fundReceiver: true,

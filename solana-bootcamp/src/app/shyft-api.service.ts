@@ -17,6 +17,7 @@ export class ShyftApiService {
         return url.toString();
     }
     
+    //getBalance = getAccount
     getAccount(publicKey: string | undefined | null) {
         if (!publicKey) {
             return of(null);

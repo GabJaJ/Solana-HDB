@@ -23,6 +23,7 @@ import { MatButton } from '@angular/material/button';
             <img [src]="account()?.info?.image" class="w-8 h-8" />
             <p class="text-xl">{{ account()?.balance }}</p>
             </div>
+        
 
             <footer class="flex justify-center items-center gap-2">
                 <button mat-raised-button color="primary" (click)="onTransfer()">
@@ -30,10 +31,7 @@ import { MatButton } from '@angular/material/button';
                 </button>
             </footer>
         }
-
-        
-
-    </mat-card>
+        </mat-card>
     <!--@if (Account3()) {
         <div class="flex items-center gap-2">
         <p class="text-xl">{{ Account3()?.info?.name }}</p>
