@@ -1,20 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { map, tap,  of } from 'rxjs';
+import { map, tap, of } from 'rxjs';
+import { config } from './config';
 
 @Injectable({ providedIn: 'root'})
 export class ShyftApiService {
-    private readonly _httpClient : HttpClient = inject(HttpClient);
-    private readonly _Key = 'QobHfFkMqo307X2S';
-    private readonly _header = { 'x-api-key': this._Key};
-    private readonly _mint = '7EYnhQoR9YM3N7UoaKRoA44Uy8JeaZV3qyouov87awMs';
+    private readonly _httpClient = inject(HttpClient);
+    private readonly _header = { 'x-api-key': config.shyftApiKey};
+    private readonly _mint = config.mint;
 
     getEndpoint() {
         const url = new URL('https://rpc.shyft.to');
 
-        url.searchParams.set('api_key', this._Key);
+        url.searchParams.set('api_key', config.shyftApiKey);
 
         return url.toString();
+    }
+
+    getBalance(publicKey: string | undefined | null) {
+        if (!publicKey) {
+                return of(null);
+        }
+    
+        const url = new URL('https://api.shyft.to/sol/v1/wallet/balance');
+    
+        url.searchParams.set('network', 'mainnet-beta');
+        url.searchParams.set('wallet', publicKey);
+    
+        return this._httpClient
+        .get<{
+            result: { balance: number };
+            }>(url.toString(), { headers: this._header })
+            .pipe(map((response) => response.result));
     }
     
     //getBalance = getAccount
@@ -48,7 +65,7 @@ export class ShyftApiService {
         url.searchParams.set('tx_num', '5');
     
         return this._httpClient
-            .get<{ result: { status: string; type: string; timestamp: string; actions: any[] }[] }>(
+                .get<{ result: { status: string; type: string; timestamp: string; actions: any[] }[] }>(
             url.toString(),
             {
                 headers: this._header,
@@ -75,9 +92,32 @@ export class ShyftApiService {
                 map((response) => response.result),
             );
         }
+            //.pipe(map((response) => response.result));
+    }
 
+    //getAllTokens(publicKey: string | undefined | null) {
+    //    if (!publicKey) {
+    //        return of(null);
+    //    }
     
-}
+    //    const url = new URL('https://api.shyft.to/sol/v1/wallet/all_tokens');
+    
+    //    url.searchParams.set('network', 'mainnet-beta');
+    //    url.searchParams.set('wallet', publicKey);
+    
+    //    return this._httpClient
+    //        .get<{
+    //        result: {
+    //            address: string;
+    //            balance: number;
+    //            info: { name: string; symbol: string; image: string };
+    //        }[];
+    //        }>(url.toString(), {
+    //            headers: this._header,
+    //        })
+    //        .pipe(map((response) => response.result));
+    //    }
+//}
 
 @Injectable({ providedIn: 'root' })
 export class tokenusdc {
